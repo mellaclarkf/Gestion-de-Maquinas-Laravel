@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('producciones', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('maquina_id')->constrained('maquinas')->onDelete('cascade');
+            $table->decimal('tiempo_produccion', 5, 2);
+            $table->decimal('tiempo_inactividad', 5, 2)->nullable();
+            $table->dateTime('fecha_hora_inicio_inactividad')->nullable();
+            $table->dateTime('fecha_hora_termino_inactividad')->nullable();
             $table->timestamps();
         });
     }
